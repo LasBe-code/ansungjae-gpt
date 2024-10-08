@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: "안성재 GPT",
   description: "안성재의 요리평가 GPT",
   keywords: "흑백요리사, 넷플릭스, 안성재, 최현석, chat gpt, 안성재 gpt",
+  verification: {
+    google: "RQaBKYjPK-yLbYaaNsTGRCRN1K5zFG3_gL5x4aZy_Ig",
+  },
 };
 
 export default function RootLayout({
