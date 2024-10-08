@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   keywords: "흑백요리사, 넷플릭스, 안성재, 최현석, chat gpt, 안성재 gpt",
   verification: {
     google: "RQaBKYjPK-yLbYaaNsTGRCRN1K5zFG3_gL5x4aZy_Ig",
+    other: {
+      "naver-site-verification": "c3f944cef68f4f343b0b8113875b477bf14d5398",
+    },
   },
 };
 
