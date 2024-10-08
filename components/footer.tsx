@@ -22,11 +22,12 @@ export default function Footer() {
         </div>
         <span className="flex gap-1 text-sm text-center text-neutral-500">
           <Image
+            className="mt-0.5"
             src={"/mail.svg"}
             alt="mail image"
             width={16}
             height={16}
-            style={{ width: "auto", height: "auto" }}
+            style={{ width: 16, height: 16 }}
           />
           devlasbe@gmail.com
         </span>
