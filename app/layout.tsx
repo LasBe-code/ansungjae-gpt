@@ -5,12 +5,10 @@ import Footer from "@/components/footer";
 
 /**
  * @todo
- * 1. 메타데이타
- * 2. robot
- * 3. search console
- * 4. footer
- * 5. refactoring
- * 6. loading
+ * 1. 공유 이미지
+ * 2. 복사
+ * 3. refactoring
+ * 4. loading
  */
 
 const notoSansKr = Noto_Sans_KR({
@@ -23,6 +21,17 @@ export const metadata: Metadata = {
   title: "안성재 GPT",
   description: "안성재의 요리평가 GPT",
   keywords: "흑백요리사, 넷플릭스, 안성재, 최현석, chat gpt, 안성재 gpt",
+  openGraph: {
+    title: "안성재 GPT",
+    description: "안성재의 요리평가 GPT",
+    siteName: "안성재 GPT",
+    locale: "ko_KR",
+    type: "website",
+    url: "https://ansungjae-gpt.vercel.app",
+    images: {
+      url: "/og-image.jpg",
+    },
+  },
   verification: {
     google: "RQaBKYjPK-yLbYaaNsTGRCRN1K5zFG3_gL5x4aZy_Ig",
     other: {
