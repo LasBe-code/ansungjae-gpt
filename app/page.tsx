@@ -35,6 +35,8 @@ export default function Home() {
                   src={"/sungjae1.webp"}
                   alt="title image"
                   fill
+                  unoptimized
+                  priority
                 />
               </div>
             ))}

@@ -21,7 +21,13 @@ export default function Footer() {
           ))}
         </div>
         <span className="flex gap-1 text-sm text-center text-neutral-500">
-          <Image src={"/mail.svg"} alt="mail image" width={16} height={16} />
+          <Image
+            src={"/mail.svg"}
+            alt="mail image"
+            width={16}
+            height={16}
+            style={{ width: "auto", height: "auto" }}
+          />
           devlasbe@gmail.com
         </span>
         <p className="font-bold text-sm text-center text-neutral-500">
