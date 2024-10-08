@@ -59,6 +59,14 @@ export default function Home() {
                 />
                 <Label htmlFor="food">평가하고 싶은 음식</Label>
               </div>
+              <div>
+                <p className="text-sm text-neutral-400">
+                  요리와 함께 재료 이름을 넣으면 더 정확합니다
+                </p>
+                <p className="text-sm text-neutral-400">
+                  ex) 청경채가 들어간 마라탕
+                </p>
+              </div>
               <Input type="text" name="food" placeholder="음식 이름" required />
             </div>
             <div className="flex flex-col gap-3">
