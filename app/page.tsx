@@ -24,14 +24,14 @@ export default function Home() {
     });
   };
   return (
-    <main className="bg-neutral-200 w-full h-dvh flex justify-center font-noto text-neutral-800">
+    <main className="bg-neutral-200 w-full min-h-dvh flex justify-center font-noto text-neutral-800">
       <div className="max-w-screen-sm md:max-w-screen-md flex flex-1 flex-col gap-4 p-4">
         <div className="flex flex-col justify-center items-center gap-4">
           <div className="relative grid grid-cols-3 w-full h-[80px] md:h-[120px] rounded-2xl overflow-hidden">
             {[...new Array(3)].map((_, idx) => (
               <div key={`topimage-${idx}`} className="relative">
                 <Image
-                  className="object-none"
+                  className="object-cover"
                   src={"/sungjae1.webp"}
                   alt="title image"
                   fill
@@ -103,7 +103,7 @@ export default function Home() {
             />
             <Label>결과</Label>
           </div>
-          <div className="flex flex-1 rounded-md border border-input bg-transparent p-2 text-sm shadow-md transition-colors whitespace-pre-wrap">
+          <div className="flex flex-1 rounded-md border border-input bg-transparent p-2 text-sm shadow-md transition-colors whitespace-pre-wrap overflow-auto">
             {result || "정말 궁금하거덩요..."}
           </div>
         </Container>
