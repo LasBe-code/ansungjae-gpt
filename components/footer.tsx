@@ -16,7 +16,7 @@ export default function Footer() {
               href={data.href}
               target="_blank"
             >
-              <Image src={data.src} alt="blog image" width={30} height={30} />
+              <Image src={data.src} alt="blog image" width={25} height={25} />
             </Link>
           ))}
         </div>
