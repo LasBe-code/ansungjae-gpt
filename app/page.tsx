@@ -1,101 +1,113 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import Container from "../components/ui/container";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Separator } from "@/components/ui/separator";
+import useGpt from "@/hooks/useGpt";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [result, setResult] = useState("");
+  const { isLoading, getGptResponse } = useGpt();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const food = formData.get("food") as string;
+    const taste = formData.get("taste") as string;
+    if (!food || !taste) return;
+    getGptResponse({ isOn: true, food, taste }).then((response) => {
+      if (response) setResult(response);
+    });
+  };
+  return (
+    <main className="bg-neutral-200 w-full h-dvh flex justify-center font-noto text-neutral-800">
+      <div className="max-w-screen-sm md:max-w-screen-md flex flex-1 flex-col gap-4 p-4">
+        <div className="flex flex-col justify-center items-center gap-4">
+          <div className="relative grid grid-cols-3 w-full h-[80px] md:h-[120px] rounded-2xl overflow-hidden">
+            {[...new Array(3)].map((_, idx) => (
+              <div key={`topimage-${idx}`} className="relative">
+                <Image
+                  className="object-none"
+                  src={"/sungjae1.webp"}
+                  alt="title image"
+                  fill
+                />
+              </div>
+            ))}
+          </div>
+          <Container className="flex-col justify-center gap-2 w-full p-4">
+            <h1 className="whitespace-nowrap text-lg md:text-2xl font-extrabold text-center">
+              🍖 안성재의 요리 평가 GPT 🥦
+            </h1>
+            <h2 className="font-bold text-neutral-500 text-sm md:text-md text-center">
+              어떤 음식을 준비하셨나요?
+            </h2>
+          </Container>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <Container className="p-6">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-2 items-center">
+                <Separator
+                  className="w-1 bg-neutral-900 mt-0.5"
+                  orientation="vertical"
+                />
+                <Label htmlFor="food">평가하고 싶은 음식</Label>
+              </div>
+              <Input type="text" name="food" placeholder="음식 이름" required />
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-2 items-center">
+                <Separator
+                  className="w-1 bg-neutral-900 mt-0.5"
+                  orientation="vertical"
+                />
+                <Label>음식의 맛</Label>
+              </div>
+              <RadioGroup defaultValue="맛있음" name="taste" required>
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="맛있음" id="r1" />
+                  <Label htmlFor="r1" className="text-sm">
+                    맛있음
+                  </Label>
+                </div>
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="맛없음" id="r2" />
+                  <Label htmlFor="r2" className="text-sm">
+                    맛없음
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                className="py-2 px-4 rounded-md bg-neutral-700 hover:bg-neutral-900 disabled:bg-slate-500 font-bold text-sm text-neutral-100"
+                disabled={isLoading}
+              >
+                평가 받기
+              </button>
+            </div>
+          </form>
+        </Container>
+        <Container className="flex-1 flex-col gap-4 p-6">
+          <div className="flex gap-2 items-center">
+            <Separator
+              className="w-1 bg-neutral-900 mt-0.5"
+              orientation="vertical"
+            />
+            <Label>결과</Label>
+          </div>
+          <div className="flex flex-1 rounded-md border border-input bg-transparent p-2 text-sm shadow-md transition-colors whitespace-pre-wrap">
+            {result || "정말 궁금하거덩요..."}
+          </div>
+        </Container>
+      </div>
+    </main>
   );
 }
