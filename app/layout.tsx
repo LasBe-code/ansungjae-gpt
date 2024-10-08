@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
+import { Analytics } from "@vercel/analytics/next";
 
 /**
  * @todo
@@ -50,6 +51,7 @@ export default function RootLayout({
       <body className={`${notoSansKr.variable} antialiased`}>
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
