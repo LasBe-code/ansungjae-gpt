@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import useGpt from "@/hooks/useGpt";
+import { Loader } from "@lasbe/loader";
 
 export default function Home() {
   const [result, setResult] = useState("");
@@ -97,9 +98,12 @@ export default function Home() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="py-2 px-4 rounded-md bg-neutral-700 hover:bg-neutral-900 disabled:bg-slate-500 font-bold text-sm text-neutral-100"
+                className="relative py-2 px-4 rounded-md bg-neutral-700 hover:bg-neutral-900 disabled:bg-neutral-700 disabled:text-transparent font-bold text-sm text-neutral-100"
                 disabled={isLoading}
               >
+                <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+                  <Loader isLoading={isLoading} color="#fff" size="lg" />
+                </div>
                 평가 받기
               </button>
             </div>
@@ -113,8 +117,11 @@ export default function Home() {
             />
             <Label>결과</Label>
           </div>
-          <div className="flex flex-1 rounded-md border border-input bg-transparent p-2 text-sm shadow-md transition-colors whitespace-pre-wrap overflow-auto">
-            {result || "정말 궁금하거덩요..."}
+          <div className="relative flex flex-1 rounded-md border border-input bg-transparent p-2 text-sm shadow-md transition-colors whitespace-pre-wrap overflow-auto">
+            <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+              <Loader isLoading={isLoading} size="lg" />
+            </div>
+            {!isLoading && (result || "정말 궁금하거덩요...")}
           </div>
         </Container>
       </div>
