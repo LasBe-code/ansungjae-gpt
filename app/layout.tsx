@@ -4,14 +4,6 @@ import "./globals.css";
 import Footer from "@/components/footer";
 import { Analytics } from "@vercel/analytics/next";
 
-/**
- * @todo
- * 1. 공유 이미지
- * 2. 복사
- * 3. refactoring
- * 4. loading
- */
-
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
   weight: ["500", "700", "900"],
