@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Container from "../components/ui/container";
-import Gpt from "@/components/Gpt";
+import Gpt from "@/components/gpt";
 
 export default function Home() {
   return (
