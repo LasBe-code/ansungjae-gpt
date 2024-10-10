@@ -9,7 +9,7 @@ export default function Button({ children, ...props }: ButtonType) {
   return (
     <button
       {...rest}
-      className={`py-2 px-4 rounded-md bg-neutral-700 hover:bg-neutral-900 disabled:bg-neutral-700 disabled:text-transparent font-bold text-sm text-neutral-100 ${className}`}
+      className={`relative py-2 px-4 rounded-md bg-neutral-700 hover:bg-neutral-900 disabled:bg-neutral-700 disabled:text-transparent font-bold text-sm text-neutral-100 ${className}`}
     >
       {children}
     </button>
